@@ -305,7 +305,7 @@ public sealed class ShellViewModel : INotifyPropertyChanged
     public string NavAbout => Text.T("정보", "About COMPIVOX");
 
     public string DropTitle => Text.T("프로젝트를 놓으세요", "Drop a project");
-    public string ThemeLabel => Text.T("흰색 기반 테마", "White theme");
+    public string ThemeLabel => Text.T("골드 다크 테마", "Gold dark theme");
     public string HomeIntro => Text.T("프로젝트, 폴더, ZIP을 올리면 분석부터 시작합니다. 확장자만 바꾸지 않습니다.", "Drop a project, folder, or ZIP to start with analysis. COMPIVOX does not just rename extensions.");
     public string DropFormats => Text.T("파일  ·  폴더  ·  ZIP", "File  ·  Folder  ·  ZIP");
     public string PickFileLabel => Text.T("파일 선택", "Choose file");

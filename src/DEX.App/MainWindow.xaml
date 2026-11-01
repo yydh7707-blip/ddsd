@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:conv="clr-namespace:DEX.App.Converters"
         Title="COMPIVOX" Height="900" Width="1360" MinHeight="760" MinWidth="1180"
-        WindowStyle="None" ResizeMode="CanResize" Background="#FFF9EF" Foreground="#17243A"
+        WindowStyle="None" ResizeMode="CanResize" Background="#08090D" Foreground="#FFF8E9"
         WindowStartupLocation="CenterScreen" AllowDrop="True" Drop="OnDrop" DragOver="OnDragOver">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
@@ -14,23 +14,23 @@
         <conv:SelectedTagConverter x:Key="NavTag"/>
     </Window.Resources>
     <Grid>
-    <Border BorderBrush="#14000000" BorderThickness="1">
-            <Grid Background="#FFF9EF">
+    <Border BorderBrush="#33C6A15B" BorderThickness="1">
+            <Grid Background="#08090D">
                         <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="236"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Background="#F1EBDD" BorderBrush="#14000000" BorderThickness="0,0,1,0">
+                <Border Background="#0D0E13" BorderBrush="#33C6A15B" BorderThickness="0,0,1,0">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="22,26,22,22">
                             <Border Width="36" Height="36" CornerRadius="10" Background="#C6A15B" BorderBrush="#9C793C" BorderThickness="1" HorizontalAlignment="Left">
-                                                            <TextBlock Text="C" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            <TextBlock Text="C" FontSize="13" FontWeight="SemiBold" Foreground="#17130A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                             <TextBlock Text="COMPIVOX" FontSize="15" FontWeight="SemiBold" Margin="0,16,0,0"/>
                             <TextBlock Text="STUDIO" Style="{StaticResource Eyebrow}" Margin="0,4,0,0"/>
                         </StackPanel>
-                        <Border DockPanel.Dock="Bottom" Margin="18,0,18,18" Background="#0A000000" BorderBrush="#14000000" BorderThickness="1" CornerRadius="12" Padding="12,10">
+                        <Border DockPanel.Dock="Bottom" Margin="18,0,18,18" Background="#0FC6A15B" BorderBrush="#33C6A15B" BorderThickness="1" CornerRadius="12" Padding="12,10">
                             <StackPanel>
                                 <TextBlock Text="1.0" FontSize="12" FontWeight="SemiBold"/>
                                 <TextBlock Text="{Binding ThemeLabel}" Style="{StaticResource Muted}" Margin="0,2,0,0"/>
@@ -49,15 +49,15 @@
                     </DockPanel>
                 </Border>
                 <DockPanel Grid.Column="1">
-                    <Border DockPanel.Dock="Top" Height="56" BorderBrush="#14000000" BorderThickness="0,0,0,1" MouseLeftButtonDown="DragWindow">
+                    <Border DockPanel.Dock="Top" Height="56" BorderBrush="#33C6A15B" BorderThickness="0,0,0,1" MouseLeftButtonDown="DragWindow">
                         <DockPanel Margin="28,0,0,0">
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                                 <Button Content="—" Style="{StaticResource CaptionButton}" Click="MinimizeClick"/>
                                 <Button Content="□" Style="{StaticResource CaptionButton}" Click="MaxClick"/>
                                 <Button Content="×" Style="{StaticResource CaptionButton}" Click="CloseClick"/>
                             </StackPanel>
-                            <Border Background="#0A000000" BorderBrush="#14000000" BorderThickness="1" CornerRadius="10" Padding="14,7" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="640">
-                                <TextBlock Text="{Binding Status}" Foreground="#4A5468" FontSize="12" TextTrimming="CharacterEllipsis"/>
+                            <Border Background="#0FC6A15B" BorderBrush="#33C6A15B" BorderThickness="1" CornerRadius="10" Padding="14,7" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="640">
+                                <TextBlock Text="{Binding Status}" Foreground="#B5B2BA" FontSize="12" TextTrimming="CharacterEllipsis"/>
                             </Border>
                         </DockPanel>
                     </Border>
@@ -200,7 +200,7 @@
                                         </WrapPanel>
                                     </StackPanel>
                                 </Border>
-                                <Border Style="{StaticResource Card}" Background="#FFFFFF">
+                                <Border Style="{StaticResource Card}" Background="#141319">
                                     <StackPanel>
                                         <TextBlock Text="{Binding SandboxNote}" Style="{StaticResource Muted}" Margin="0,0,0,8"/>
                                         <CheckBox Content="{Binding ConsentText}" IsChecked="{Binding Consent}" IsEnabled="{Binding CanBuild}"/>
@@ -279,15 +279,15 @@
                                             <Border Style="{StaticResource Card}">
                                                 <StackPanel>
                                                     <DockPanel>
-                                                        <Border DockPanel.Dock="Right" Background="#0F000000" BorderBrush="#1F000000" BorderThickness="1" CornerRadius="999" Padding="10,4" VerticalAlignment="Center">
+                                                        <Border DockPanel.Dock="Right" Background="#14C6A15B" BorderBrush="#40C6A15B" BorderThickness="1" CornerRadius="999" Padding="10,4" VerticalAlignment="Center">
                                                             <TextBlock Text="{Binding State}" FontSize="11"/>
                                                         </Border>
                                                         <StackPanel>
-                                                            <TextBlock FontSize="18" FontWeight="SemiBold"><Run Text="{Binding Name}"/><Run Text="   "/><Run Text="{Binding Vendor}" Foreground="#6B7385" FontSize="13"/></TextBlock>
+                                                            <TextBlock FontSize="18" FontWeight="SemiBold"><Run Text="{Binding Name}"/><Run Text="   "/><Run Text="{Binding Vendor}" Foreground="#9996A0" FontSize="13"/></TextBlock>
                                                             <TextBlock Text="{Binding Reason}" Style="{StaticResource Muted}" Margin="0,6,0,0"/>
                                                         </StackPanel>
                                                     </DockPanel>
-                                                    <TextBlock Margin="0,12,0,0"><Run Text="Required  " Foreground="#6B7385"/><Run Text="{Binding RequiredVersion}"/><Run Text="      Installed  " Foreground="#6B7385"/><Run Text="{Binding Version}"/></TextBlock>
+                                                    <TextBlock Margin="0,12,0,0"><Run Text="Required  " Foreground="#9996A0"/><Run Text="{Binding RequiredVersion}"/><Run Text="      Installed  " Foreground="#9996A0"/><Run Text="{Binding Version}"/></TextBlock>
                                                     <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
                                                         <Button Content="{Binding OfficialSiteLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding DataContext.OpenToolCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Id}"/>
                                                         <Button Content="{Binding InstallGuideLabel}" Style="{StaticResource GhostButton}" Command="{Binding DataContext.GuideToolCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Id}"/>
@@ -377,7 +377,7 @@
                 <StackPanel.RenderTransform>
                     <ScaleTransform x:Name="IntroScale" ScaleX="0.94" ScaleY="0.94"/>
                 </StackPanel.RenderTransform>
-                <Border Width="72" Height="72" CornerRadius="18" Background="#FFFFFF" HorizontalAlignment="Center">
+                <Border Width="72" Height="72" CornerRadius="18" Background="#C6A15B" HorizontalAlignment="Center">
                     <TextBlock Text="C" FontSize="30" FontWeight="SemiBold" Foreground="#000000" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <TextBlock Text="COMPIVOX" FontSize="28" FontWeight="SemiBold" Foreground="#FFFFFF" HorizontalAlignment="Center" Margin="0,22,0,0"/>
