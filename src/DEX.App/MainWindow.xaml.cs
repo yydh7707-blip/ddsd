@@ -29,6 +29,29 @@ public partial class MainWindow : Window
         _model.PropertyChanged += OnModelChanged;
         _page = PageHome;
         Loaded += OnLoaded;
+        MouseMove += OnAuraMouseMove;
+        CompositionTarget.Rendering += OnAuraFrame;
+    }
+
+    private double _auraTargetX, _auraTargetY, _auraX, _auraY;
+
+    private void OnAuraMouseMove(object sender, MouseEventArgs e)
+    {
+        var p = e.GetPosition(this);
+        _auraTargetX = (p.X / Math.Max(1, ActualWidth) - 0.5) * 2;
+        _auraTargetY = (p.Y / Math.Max(1, ActualHeight) - 0.5) * 2;
+    }
+
+    private void OnAuraFrame(object? sender, EventArgs e)
+    {
+        if (!IsLoaded || !SystemParameters.ClientAreaAnimation)
+            return;
+        _auraX += (_auraTargetX - _auraX) * 0.06;
+        _auraY += (_auraTargetY - _auraY) * 0.06;
+        AuraWarmMX.X = _auraX * 120;
+        AuraWarmMY.Y = _auraY * 90;
+        AuraPlumMX.X = -_auraX * 160;
+        AuraPlumMY.Y = -_auraY * 110;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)

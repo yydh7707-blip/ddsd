@@ -47,7 +47,10 @@
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
-            <Ellipse.RenderTransform><TranslateTransform x:Name="AuraWarmX"/></Ellipse.RenderTransform>
+            <Ellipse.RenderTransform><TransformGroup>
+                <TranslateTransform x:Name="AuraWarmX"/><TranslateTransform x:Name="AuraWarmY"/>
+                <TranslateTransform x:Name="AuraWarmMX"/><TranslateTransform x:Name="AuraWarmMY"/>
+            </TransformGroup></Ellipse.RenderTransform>
             <Ellipse.Effect><BlurEffect Radius="70"/></Ellipse.Effect>
         </Ellipse>
         <Ellipse Width="900" Height="900" Canvas.Left="760" Canvas.Top="260" Opacity="0.9">
@@ -58,7 +61,10 @@
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
-            <Ellipse.RenderTransform><TranslateTransform x:Name="AuraPlumX"/></Ellipse.RenderTransform>
+            <Ellipse.RenderTransform><TransformGroup>
+                <TranslateTransform x:Name="AuraPlumX"/><TranslateTransform x:Name="AuraPlumY"/>
+                <TranslateTransform x:Name="AuraPlumMX"/><TranslateTransform x:Name="AuraPlumMY"/>
+            </TransformGroup></Ellipse.RenderTransform>
             <Ellipse.Effect><BlurEffect Radius="80"/></Ellipse.Effect>
         </Ellipse>
         <Ellipse Width="2000" Height="2000" Canvas.Left="-250" Canvas.Top="-300" Opacity="0.7">
