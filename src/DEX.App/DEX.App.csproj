@@ -20,6 +20,7 @@
                 <Company>COMPIVOX</Company>
         <Description>Universal Windows EXE converter</Description>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>Assets\app.ico</ApplicationIcon>
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
       </PropertyGroup>
 
