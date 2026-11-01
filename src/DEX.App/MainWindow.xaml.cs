@@ -134,6 +134,7 @@ public partial class MainWindow : Window
             "install" => PageInstall,
             "settings" => PageSettings,
             "about" => PageAbout,
+            "account" => PageAccount,
             _ => PageHome
         };
         if (next == _page)

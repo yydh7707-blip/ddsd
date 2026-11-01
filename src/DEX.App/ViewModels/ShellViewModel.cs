@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -51,10 +51,119 @@ public sealed class ShellViewModel : INotifyPropertyChanged
         CancelBuildCommand = new RelayCommand(_ => _buildCts?.Cancel());
         UseEntryCommand = new RelayCommand(p => { SelectedEntry = p?.ToString() ?? ""; RefreshReport(); });
         BuildAgainCommand = new AsyncRelayCommand(async p => await BuildAgainAsync(p?.ToString()));
+        LoginCommand = new AsyncRelayCommand(async p => await LoginAsync(p as System.Windows.Controls.PasswordBox));
+        LogoutCommand = new AsyncRelayCommand(async _ => await LogoutAsync());
+        OpenSiteCommand = new RelayCommand(p => OpenSite(p?.ToString()));
+        CheckDeviceCommand = new AsyncRelayCommand(async _ => await CheckDeviceAsync());
+        _ = RestoreAccountAsync();
         _ = LoadHomeAsync().ContinueWith(_ => Ready = true, TaskScheduler.FromCurrentSynchronizationContext());
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+    private readonly DEX.App.Account.AccountClient _account = new();
+    private DEX.App.Account.AccountInfo? _me;
+    private bool _deviceRegistered;
+    private string _accountMessage = "";
+    private string _loginEmail = "";
+    private bool _remember = true;
+
+    public AsyncRelayCommand LoginCommand { get; }
+    public AsyncRelayCommand LogoutCommand { get; }
+    public RelayCommand OpenSiteCommand { get; }
+    public AsyncRelayCommand CheckDeviceCommand { get; }
+
+    public bool SignedIn => _me is not null;
+    public bool SignedOut => _me is null;
+    public string LoginEmail { get => _loginEmail; set { _loginEmail = value; Notify(); } }
+    public bool RememberMe { get => _remember; set { _remember = value; Notify(); } }
+    public string AccountMessage { get => _accountMessage; set { _accountMessage = value; Notify(); } }
+    public string AccountEmail => _me?.Email ?? "";
+    public string AccountPlan => _me?.Plan ?? "";
+    public string AccountVerified => _me is null ? "" : _me.EmailVerified ? Text.T("인증됨", "Verified") : Text.T("미인증", "Not verified");
+    public string DeviceStatus => !SignedIn ? "" : _deviceRegistered ? Text.T("이 기기는 등록되었습니다.", "This device is registered.") : Text.T("이 기기는 아직 등록되지 않았습니다. 웹사이트에서 등록하세요.", "This device is not registered yet. Register it on the website.");
+    public string NavAccount => Text.T("계정", "Account");
+    public string AccountTitle => Text.T("COMPIVOX 계정", "COMPIVOX account");
+    public string AccountIntro => Text.T("빌드하려면 로그인하고 이 기기를 등록해야 합니다. 비밀번호는 저장하지 않습니다.", "Sign in and register this device to build. Your password is never stored.");
+    public string EmailLabel => Text.T("이메일", "Email");
+    public string PasswordLabel => Text.T("비밀번호", "Password");
+    public string RememberLabel => Text.T("로그인 유지", "Keep me signed in");
+    public string SignInLabel => Text.T("로그인", "Sign in");
+    public string SignOutLabel => Text.T("로그아웃", "Sign out");
+    public string CreateAccountLabel => Text.T("계정 만들기", "Create account");
+    public string ForgotLabel => Text.T("비밀번호 찾기", "Forgot password");
+    public string RegisterDeviceLabel => Text.T("이 기기 등록", "Register this device");
+    public string RecheckDeviceLabel => Text.T("기기 상태 확인", "Check device");
+    public string PlanLabel => Text.T("요금제", "Plan");
+
+    private void NotifyAccount()
+    {
+        foreach (var n in new[] { nameof(SignedIn), nameof(SignedOut), nameof(AccountEmail), nameof(AccountPlan), nameof(AccountVerified), nameof(DeviceStatus) })
+            Notify(n);
+    }
+
+    private static string AccountError(DEX.App.Account.ApiException ex) => ex.Code switch
+    {
+        "network" => Text.T("서버에 연결할 수 없습니다. 인터넷 연결을 확인하세요.", "Cannot reach the server. Check your internet connection."),
+        "invalid_credentials" => Text.T("이메일 또는 비밀번호가 올바르지 않습니다.", "Email or password is incorrect."),
+        "email_not_verified" => Text.T("먼저 웹사이트에서 이메일을 인증하세요.", "Verify your email on the website first."),
+        "account_temporarily_locked" or "rate_limited" => Text.T("시도가 너무 많습니다. 잠시 후 다시 시도하세요.", "Too many attempts. Try again later."),
+        "network_blocked" => Text.T("이 네트워크에서는 접속할 수 없습니다.", "This network is not allowed."),
+        "ip_verification_required" => Text.T("추가 네트워크 확인이 필요합니다. 웹사이트에서 로그인해 확인하세요.", "Extra network verification is required. Sign in on the website to confirm."),
+        "device_not_registered" => Text.T("이 기기가 등록되지 않았습니다. 웹사이트에서 등록하세요.", "This device is not registered. Register it on the website."),
+        "build_limit_reached" => Text.T("이번 달 무료 빌드 한도에 도달했습니다.", "You reached this month's FREE build limit."),
+        "unauthorized" => Text.T("다시 로그인하세요.", "Please sign in again."),
+        _ => Text.T("요청을 처리하지 못했습니다.", "The request could not be completed.")
+    };
+
+    private async Task LoginAsync(System.Windows.Controls.PasswordBox? box)
+    {
+        AccountMessage = "";
+        if (box is null || string.IsNullOrWhiteSpace(LoginEmail) || box.Password.Length == 0)
+        {
+            AccountMessage = Text.T("이메일과 비밀번호를 입력하세요.", "Enter your email and password.");
+            return;
+        }
+        try
+        {
+            _me = await _account.LoginAsync(LoginEmail.Trim(), box.Password, RememberMe);
+            box.Clear();
+            await CheckDeviceAsync();
+            NotifyAccount();
+        }
+        catch (DEX.App.Account.ApiException ex) { AccountMessage = AccountError(ex); }
+    }
+
+    private async Task RestoreAccountAsync()
+    {
+        try
+        {
+            _me = await _account.RestoreAsync();
+            if (_me is not null) { await CheckDeviceAsync(); NotifyAccount(); }
+            else Page = "account";
+        }
+        catch (DEX.App.Account.ApiException) { Page = "account"; }
+    }
+
+    private async Task LogoutAsync()
+    {
+        await _account.LogoutAsync();
+        _me = null; _deviceRegistered = false; AccountMessage = "";
+        NotifyAccount();
+    }
+
+    private async Task CheckDeviceAsync()
+    {
+        try { _deviceRegistered = await _account.IsDeviceRegisteredAsync(); }
+        catch (DEX.App.Account.ApiException ex) { _deviceRegistered = false; AccountMessage = AccountError(ex); }
+        Notify(nameof(DeviceStatus));
+    }
+
+    private void OpenSite(string? kind)
+    {
+        var url = kind == "device" ? _account.LinkDeviceUrl : _account.SiteUrl + "/account";
+        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+    }
+
     public RelayCommand NavigateCommand { get; }
     public RelayCommand BrowseFileCommand { get; }
     public RelayCommand BrowseFolderCommand { get; }
@@ -342,6 +451,13 @@ public sealed class ShellViewModel : INotifyPropertyChanged
         if (!SecurityManager.IsVersionToken(ProductVersion))
         {
             Status = Text.T("버전은 1.0.0 형식이어야 합니다.", "Version must look like 1.0.0.");
+            return;
+        }
+        try { await _account.AuthorizeBuildAsync(System.IO.Path.GetFileName(_current.RootPath.TrimEnd('\\', '/'))); }
+        catch (DEX.App.Account.ApiException ex)
+        {
+            Status = AccountError(ex);
+            if (ex.Code is "unauthorized" or "device_not_registered") Page = "account";
             return;
         }
         _buildCts = new CancellationTokenSource();

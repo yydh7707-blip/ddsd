@@ -1,9 +1,9 @@
-<Window x:Class="DEX.App.MainWindow"
+﻿<Window x:Class="DEX.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:conv="clr-namespace:DEX.App.Converters"
         Title="COMPIVOX" Height="900" Width="1360" MinHeight="760" MinWidth="1180"
-        WindowStyle="None" ResizeMode="CanResize" Background="#EFEFF1" Foreground="#111113"
+        WindowStyle="None" ResizeMode="CanResize" Background="#FFF9EF" Foreground="#17243A"
         WindowStartupLocation="CenterScreen" AllowDrop="True" Drop="OnDrop" DragOver="OnDragOver">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
@@ -15,16 +15,16 @@
     </Window.Resources>
     <Grid>
     <Border BorderBrush="#14000000" BorderThickness="1">
-            <Grid Background="#EFEFF1">
+            <Grid Background="#FFF9EF">
                         <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="236"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Background="#E4E4E7" BorderBrush="#14000000" BorderThickness="0,0,1,0">
+                <Border Background="#F1EBDD" BorderBrush="#14000000" BorderThickness="0,0,1,0">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="22,26,22,22">
-                            <Border Width="36" Height="36" CornerRadius="10" BorderBrush="#1F000000" BorderThickness="1" HorizontalAlignment="Left">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="#C6A15B" BorderBrush="#9C793C" BorderThickness="1" HorizontalAlignment="Left">
                                                             <TextBlock Text="C" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                             <TextBlock Text="COMPIVOX" FontSize="15" FontWeight="SemiBold" Margin="0,16,0,0"/>
@@ -43,6 +43,7 @@
                             <Button Content="{Binding NavFormats}" Style="{StaticResource NavButton}" Command="{Binding NavigateCommand}" CommandParameter="formats" Tag="{Binding Page, Converter={StaticResource NavTag}, ConverterParameter=formats}"/>
                             <Button Content="{Binding NavInstall}" Style="{StaticResource NavButton}" Command="{Binding NavigateCommand}" CommandParameter="install" Tag="{Binding Page, Converter={StaticResource NavTag}, ConverterParameter=install}"/>
                             <Button Content="{Binding NavSettings}" Style="{StaticResource NavButton}" Command="{Binding NavigateCommand}" CommandParameter="settings" Tag="{Binding Page, Converter={StaticResource NavTag}, ConverterParameter=settings}"/>
+                            <Button Content="{Binding NavAccount}" Style="{StaticResource NavButton}" Command="{Binding NavigateCommand}" CommandParameter="account" Tag="{Binding Page, Converter={StaticResource NavTag}, ConverterParameter=account}"/>
                             <Button Content="{Binding NavAbout}" Style="{StaticResource NavButton}" Command="{Binding NavigateCommand}" CommandParameter="about" Tag="{Binding Page, Converter={StaticResource NavTag}, ConverterParameter=about}"/>
                         </StackPanel>
                     </DockPanel>
@@ -56,7 +57,7 @@
                                 <Button Content="×" Style="{StaticResource CaptionButton}" Click="CloseClick"/>
                             </StackPanel>
                             <Border Background="#0A000000" BorderBrush="#14000000" BorderThickness="1" CornerRadius="10" Padding="14,7" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="640">
-                                <TextBlock Text="{Binding Status}" Foreground="#52525B" FontSize="12" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="{Binding Status}" Foreground="#4A5468" FontSize="12" TextTrimming="CharacterEllipsis"/>
                             </Border>
                         </DockPanel>
                     </Border>
@@ -282,11 +283,11 @@
                                                             <TextBlock Text="{Binding State}" FontSize="11"/>
                                                         </Border>
                                                         <StackPanel>
-                                                            <TextBlock FontSize="18" FontWeight="SemiBold"><Run Text="{Binding Name}"/><Run Text="   "/><Run Text="{Binding Vendor}" Foreground="#71717A" FontSize="13"/></TextBlock>
+                                                            <TextBlock FontSize="18" FontWeight="SemiBold"><Run Text="{Binding Name}"/><Run Text="   "/><Run Text="{Binding Vendor}" Foreground="#6B7385" FontSize="13"/></TextBlock>
                                                             <TextBlock Text="{Binding Reason}" Style="{StaticResource Muted}" Margin="0,6,0,0"/>
                                                         </StackPanel>
                                                     </DockPanel>
-                                                    <TextBlock Margin="0,12,0,0"><Run Text="Required  " Foreground="#71717A"/><Run Text="{Binding RequiredVersion}"/><Run Text="      Installed  " Foreground="#71717A"/><Run Text="{Binding Version}"/></TextBlock>
+                                                    <TextBlock Margin="0,12,0,0"><Run Text="Required  " Foreground="#6B7385"/><Run Text="{Binding RequiredVersion}"/><Run Text="      Installed  " Foreground="#6B7385"/><Run Text="{Binding Version}"/></TextBlock>
                                                     <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
                                                         <Button Content="{Binding OfficialSiteLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding DataContext.OpenToolCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Id}"/>
                                                         <Button Content="{Binding InstallGuideLabel}" Style="{StaticResource GhostButton}" Command="{Binding DataContext.GuideToolCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Id}"/>
@@ -317,6 +318,42 @@
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
+                            </StackPanel>
+
+                            <StackPanel x:Name="PageAccount" Visibility="Collapsed" MaxWidth="520">
+                                <TextBlock Text="ACCOUNT" Style="{StaticResource Eyebrow}"/>
+                                <TextBlock Text="{Binding AccountTitle}" Style="{StaticResource Title}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding AccountIntro}" Style="{StaticResource Muted}"/>
+                                <Border Style="{StaticResource Card}" Margin="0,16,0,0" Visibility="{Binding SignedOut, Converter={StaticResource BoolVis}}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding EmailLabel}" Style="{StaticResource FactLabel}"/>
+                                        <TextBox Text="{Binding LoginEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Text="{Binding PasswordLabel}" Style="{StaticResource FactLabel}" Margin="0,16,0,4"/>
+                                        <PasswordBox x:Name="LoginPassword" Padding="8,7"/>
+                                        <CheckBox Content="{Binding RememberLabel}" IsChecked="{Binding RememberMe}" Margin="0,14,0,0"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                                            <Button Content="{Binding SignInLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LoginPassword}"/>
+                                            <Button Content="{Binding CreateAccountLabel}" Style="{StaticResource GhostButton}" Command="{Binding OpenSiteCommand}" CommandParameter="site"/>
+                                            <Button Content="{Binding ForgotLabel}" Style="{StaticResource GhostButton}" Command="{Binding OpenSiteCommand}" CommandParameter="site"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                                <Border Style="{StaticResource Card}" Margin="0,16,0,0" Visibility="{Binding SignedIn, Converter={StaticResource BoolVis}}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding EmailLabel}" Style="{StaticResource FactLabel}"/>
+                                        <TextBlock Text="{Binding AccountEmail}" FontSize="16" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding AccountVerified}" Style="{StaticResource Muted}" Margin="0,4,0,0"/>
+                                        <TextBlock Text="{Binding PlanLabel}" Style="{StaticResource FactLabel}" Margin="0,16,0,4"/>
+                                        <TextBlock Text="{Binding AccountPlan}" FontSize="16" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding DeviceStatus}" Style="{StaticResource Muted}" Margin="0,16,0,0"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                                            <Button Content="{Binding RegisterDeviceLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding OpenSiteCommand}" CommandParameter="device"/>
+                                            <Button Content="{Binding RecheckDeviceLabel}" Style="{StaticResource GhostButton}" Command="{Binding CheckDeviceCommand}"/>
+                                            <Button Content="{Binding SignOutLabel}" Style="{StaticResource GhostButton}" Command="{Binding LogoutCommand}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                                <TextBlock Text="{Binding AccountMessage}" Foreground="#B3453E" Margin="0,12,0,0"/>
                             </StackPanel>
 
                             <StackPanel x:Name="PageAbout" Visibility="Collapsed" MaxWidth="680">
