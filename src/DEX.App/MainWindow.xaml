@@ -13,9 +13,83 @@
         <conv:PageMatchConverter x:Key="PageVis"/>
         <conv:SelectedTagConverter x:Key="NavTag"/>
     </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="AuraWarmX" Storyboard.TargetProperty="X" From="-140" To="160" Duration="0:0:40" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="AuraWarmY" Storyboard.TargetProperty="Y" From="-70" To="90" Duration="0:0:52" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="AuraPlumX" Storyboard.TargetProperty="X" From="120" To="-180" Duration="0:0:56" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="AuraPlumY" Storyboard.TargetProperty="Y" From="60" To="-80" Duration="0:0:61" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="Ring1Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:18" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring1X" Storyboard.TargetProperty="X" From="0" To="26" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring2Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:24" BeginTime="0:0:5" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring2X" Storyboard.TargetProperty="X" From="0" To="-30" Duration="0:0:5" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring3Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:15" BeginTime="0:0:9" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring3X" Storyboard.TargetProperty="X" From="0" To="18" Duration="0:0:3.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring4Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:27" BeginTime="0:0:2" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring4X" Storyboard.TargetProperty="X" From="0" To="-22" Duration="0:0:4.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring5Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:21" BeginTime="0:0:13" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring5X" Storyboard.TargetProperty="X" From="0" To="24" Duration="0:0:5.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring6Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:33" BeginTime="0:0:7" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetName="Ring6X" Storyboard.TargetProperty="X" From="0" To="-16" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
+    <Canvas x:Name="AuraCanvas" IsHitTestVisible="False" ClipToBounds="True" Background="#08090D">
+        <Ellipse Width="1100" Height="1100" Canvas.Left="150" Canvas.Top="-200" Opacity="0.9">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#80FF8C32" Offset="0"/>
+                    <GradientStop Color="#40D65A3C" Offset="0.45"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+            <Ellipse.RenderTransform><TranslateTransform x:Name="AuraWarmX"/></Ellipse.RenderTransform>
+            <Ellipse.Effect><BlurEffect Radius="70"/></Ellipse.Effect>
+        </Ellipse>
+        <Ellipse Width="900" Height="900" Canvas.Left="760" Canvas.Top="260" Opacity="0.9">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#5C8C3CA0" Offset="0"/>
+                    <GradientStop Color="#2A5A2A70" Offset="0.55"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+            <Ellipse.RenderTransform><TranslateTransform x:Name="AuraPlumX"/></Ellipse.RenderTransform>
+            <Ellipse.Effect><BlurEffect Radius="80"/></Ellipse.Effect>
+        </Ellipse>
+        <Ellipse Width="2000" Height="2000" Canvas.Left="-250" Canvas.Top="-300" Opacity="0.7">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#00000000" Offset="0.55"/>
+                    <GradientStop Color="#B8080910" Offset="1"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Width="16" Height="16" Canvas.Left="90" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1.2" Fill="#33FFD68C" Opacity="0.7">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring1X"/><TranslateTransform x:Name="Ring1Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse Width="26" Height="26" Canvas.Left="300" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1.2" Fill="#26FFD68C" Opacity="0.6">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring2X"/><TranslateTransform x:Name="Ring2Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse Width="10" Height="10" Canvas.Left="520" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1" Fill="#40FFD68C" Opacity="0.8">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring3X"/><TranslateTransform x:Name="Ring3Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse Width="22" Height="22" Canvas.Left="760" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1.2" Fill="#26FFD68C" Opacity="0.6">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring4X"/><TranslateTransform x:Name="Ring4Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse Width="14" Height="14" Canvas.Left="980" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1.2" Fill="#33FFD68C" Opacity="0.7">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring5X"/><TranslateTransform x:Name="Ring5Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse Width="34" Height="34" Canvas.Left="1180" Canvas.Top="1000" Stroke="#FFCD82" StrokeThickness="1.2" Fill="#1FFFD68C" Opacity="0.5">
+            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring6X"/><TranslateTransform x:Name="Ring6Y"/></TransformGroup></Ellipse.RenderTransform>
+        </Ellipse>
+    </Canvas>
     <Border BorderBrush="#33C6A15B" BorderThickness="1">
-            <Grid Background="#08090D">
+            <Grid>
                         <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="236"/>
