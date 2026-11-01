@@ -72,22 +72,14 @@ public partial class MainWindow : Window
             sb.Children.Add(anim);
         }
 
-        Add("AuraWarmX", "X", -140, 160, 40, 0, true);
-        Add("AuraWarmY", "Y", -70, 90, 52, 0, true);
-        Add("AuraPlumX", "X", 120, -180, 56, 0, true);
-        Add("AuraPlumY", "Y", 60, -80, 61, 0, true);
-        Add("Ring1Y", "Y", 0, -1150, 18, 0, false);
-        Add("Ring1X", "X", 0, 26, 4, 0, true);
-        Add("Ring2Y", "Y", 0, -1150, 24, 5, false);
-        Add("Ring2X", "X", 0, -30, 5, 0, true);
-        Add("Ring3Y", "Y", 0, -1150, 15, 9, false);
-        Add("Ring3X", "X", 0, 18, 3.5, 0, true);
-        Add("Ring4Y", "Y", 0, -1150, 27, 2, false);
-        Add("Ring4X", "X", 0, -22, 4.5, 0, true);
-        Add("Ring5Y", "Y", 0, -1150, 21, 13, false);
-        Add("Ring5X", "X", 0, 24, 5.5, 0, true);
-        Add("Ring6Y", "Y", 0, -1150, 33, 7, false);
-        Add("Ring6X", "X", 0, -16, 4, 0, true);
+        Add("AuraWarmX", "X", -160, 180, 60, 0, true);
+        Add("AuraWarmY", "Y", -80, 100, 70, 0, true);
+        Add("AuraPlumX", "X", 140, -200, 72, 0, true);
+        Add("AuraPlumY", "Y", 70, -90, 80, 0, true);
+        Add("AuraWarmS", "ScaleX", 0.94, 1.06, 26, 0, true);
+        Add("AuraWarmS", "ScaleY", 0.94, 1.06, 26, 0, true);
+        Add("AuraPlumS", "ScaleX", 1.05, 0.95, 34, 0, true);
+        Add("AuraPlumS", "ScaleY", 1.05, 0.95, 34, 0, true);
 
         sb.Begin(this, true);
     }

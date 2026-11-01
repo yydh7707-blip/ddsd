@@ -12,42 +12,39 @@
         <conv:BoolToVisibilityConverter x:Key="BoolVis"/>
         <conv:PageMatchConverter x:Key="PageVis"/>
         <conv:SelectedTagConverter x:Key="NavTag"/>
-        <RadialGradientBrush x:Key="GoldOrbBrush">
-            <GradientStop Color="#FFF8E9" Offset="0"/>
-            <GradientStop Color="#E5C98A" Offset="0.3"/>
-            <GradientStop Color="#C6A15B" Offset="0.65"/>
-            <GradientStop Color="#00C6A15B" Offset="1"/>
-        </RadialGradientBrush>
     </Window.Resources>
     <Grid>
     <Canvas x:Name="AuraCanvas" IsHitTestVisible="False" ClipToBounds="True" Background="#08090D">
-        <Ellipse Width="1100" Height="1100" Canvas.Left="150" Canvas.Top="-200" Opacity="0.9">
+        <Ellipse Width="1600" Height="980" Canvas.Left="-120" Canvas.Top="-80" Opacity="0.85">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="#70E5C98A" Offset="0"/>
-                    <GradientStop Color="#35C6A15B" Offset="0.45"/>
+                    <GradientStop Color="#60FFF0CC" Offset="0"/>
+                    <GradientStop Color="#40E5C98A" Offset="0.35"/>
+                    <GradientStop Color="#18C6A15B" Offset="0.7"/>
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
             <Ellipse.RenderTransform><TransformGroup>
+                <ScaleTransform x:Name="AuraWarmS" CenterX="800" CenterY="490"/>
                 <TranslateTransform x:Name="AuraWarmX"/><TranslateTransform x:Name="AuraWarmY"/>
                 <TranslateTransform x:Name="AuraWarmMX"/><TranslateTransform x:Name="AuraWarmMY"/>
             </TransformGroup></Ellipse.RenderTransform>
-            <Ellipse.Effect><BlurEffect Radius="70"/></Ellipse.Effect>
+            <Ellipse.Effect><BlurEffect Radius="120"/></Ellipse.Effect>
         </Ellipse>
-        <Ellipse Width="900" Height="900" Canvas.Left="760" Canvas.Top="260" Opacity="0.9">
+        <Ellipse Width="1400" Height="860" Canvas.Left="480" Canvas.Top="300" Opacity="0.8">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="#50D8BD80" Offset="0"/>
-                    <GradientStop Color="#2A96743D" Offset="0.55"/>
+                    <GradientStop Color="#44D8BD80" Offset="0"/>
+                    <GradientStop Color="#2296743D" Offset="0.5"/>
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
             <Ellipse.RenderTransform><TransformGroup>
+                <ScaleTransform x:Name="AuraPlumS" CenterX="700" CenterY="430"/>
                 <TranslateTransform x:Name="AuraPlumX"/><TranslateTransform x:Name="AuraPlumY"/>
                 <TranslateTransform x:Name="AuraPlumMX"/><TranslateTransform x:Name="AuraPlumMY"/>
             </TransformGroup></Ellipse.RenderTransform>
-            <Ellipse.Effect><BlurEffect Radius="80"/></Ellipse.Effect>
+            <Ellipse.Effect><BlurEffect Radius="130"/></Ellipse.Effect>
         </Ellipse>
         <Ellipse Width="2000" Height="2000" Canvas.Left="-250" Canvas.Top="-300" Opacity="0.7">
             <Ellipse.Fill>
@@ -56,24 +53,6 @@
                     <GradientStop Color="#B8080910" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
-        </Ellipse>
-        <Ellipse Width="70" Height="70" Canvas.Left="90" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.55">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring1X"/><TranslateTransform x:Name="Ring1Y"/></TransformGroup></Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse Width="110" Height="110" Canvas.Left="300" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.45">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring2X"/><TranslateTransform x:Name="Ring2Y"/></TransformGroup></Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse Width="44" Height="44" Canvas.Left="520" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.6">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring3X"/><TranslateTransform x:Name="Ring3Y"/></TransformGroup></Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse Width="90" Height="90" Canvas.Left="760" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.45">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring4X"/><TranslateTransform x:Name="Ring4Y"/></TransformGroup></Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse Width="60" Height="60" Canvas.Left="980" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.55">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring5X"/><TranslateTransform x:Name="Ring5Y"/></TransformGroup></Ellipse.RenderTransform>
-        </Ellipse>
-        <Ellipse Width="130" Height="130" Canvas.Left="1180" Canvas.Top="1000" Fill="{StaticResource GoldOrbBrush}" Opacity="0.35">
-            <Ellipse.RenderTransform><TransformGroup><TranslateTransform x:Name="Ring6X"/><TranslateTransform x:Name="Ring6Y"/></TransformGroup></Ellipse.RenderTransform>
         </Ellipse>
     </Canvas>
     <Border BorderBrush="#33C6A15B" BorderThickness="1">
