@@ -18,9 +18,9 @@
         <Ellipse Width="1600" Height="980" Canvas.Left="-120" Canvas.Top="-80" Opacity="0.85">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="#60FFF0CC" Offset="0"/>
-                    <GradientStop Color="#40E5C98A" Offset="0.35"/>
-                    <GradientStop Color="#18C6A15B" Offset="0.7"/>
+                    <GradientStop Color="#7AC07A36" Offset="0"/>
+                    <GradientStop Color="#50A8662A" Offset="0.35"/>
+                    <GradientStop Color="#18704A1E" Offset="0.7"/>
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
@@ -34,8 +34,8 @@
         <Ellipse Width="1400" Height="860" Canvas.Left="480" Canvas.Top="300" Opacity="0.8">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="#44D8BD80" Offset="0"/>
-                    <GradientStop Color="#2296743D" Offset="0.5"/>
+                    <GradientStop Color="#4AB8762F" Offset="0"/>
+                    <GradientStop Color="#226A4520" Offset="0.5"/>
                     <GradientStop Color="#00000000" Offset="1"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
@@ -418,9 +418,7 @@
                 <StackPanel.RenderTransform>
                     <ScaleTransform x:Name="IntroScale" ScaleX="0.94" ScaleY="0.94"/>
                 </StackPanel.RenderTransform>
-                <Border Width="72" Height="72" CornerRadius="18" Background="#C6A15B" HorizontalAlignment="Center">
-                    <TextBlock Text="C" FontSize="30" FontWeight="SemiBold" Foreground="#000000" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
+                <Image Source="pack://application:,,,/Assets/app-icon.png" Width="96" Height="96" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
                 <TextBlock Text="COMPIVOX" FontSize="28" FontWeight="SemiBold" Foreground="#FFFFFF" HorizontalAlignment="Center" Margin="0,22,0,0"/>
             </StackPanel>
         </Grid>
