@@ -11,6 +11,33 @@ namespace DEX.App;
 /// </summary>
 public partial class App : Application
 {
+    protected override async void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        // 로그인 창을 닫아도 앱이 종료되지 않도록 명시적 종료 모드로 시작한다.
+        ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+        var account = new DEX.App.Account.AccountClient();
+        bool signedIn;
+        try { signedIn = await account.RestoreAsync() is not null; }
+        catch (Exception) { signedIn = false; }
+
+        if (!signedIn)
+        {
+            var login = new LoginWindow(account);
+            if (login.ShowDialog() != true)
+            {
+                Shutdown();
+                return;
+            }
+        }
+
+        var main = new MainWindow();
+        MainWindow = main;
+        ShutdownMode = ShutdownMode.OnMainWindowClose;
+        main.Show();
+    }
+
     public App()
     {
         DispatcherUnhandledException += (_, e) =>

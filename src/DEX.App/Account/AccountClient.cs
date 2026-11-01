@@ -102,6 +102,13 @@ public sealed class AccountClient
         return Accept(r, remember);
     }
 
+    /// <summary>웹사이트 로그인 후 전달받은 일회용 코드를 세션으로 교환한다.</summary>
+    public async Task<AccountInfo> ExchangeCodeAsync(string code, CancellationToken ct = default)
+    {
+        var r = await SendAsync(HttpMethod.Post, "api/auth/desktop-exchange", new { code }, false, ct);
+        return Accept(r, true);
+    }
+
     public async Task<AccountInfo?> RestoreAsync(CancellationToken ct = default)
     {
         var rt = LoadRefresh();

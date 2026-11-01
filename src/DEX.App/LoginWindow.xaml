@@ -1,0 +1,103 @@
+<Window x:Class="DEX.App.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="COMPIVOX" Width="460" Height="520" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="0" GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style x:Key="GoldButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#14110A"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Body" CornerRadius="12" Background="{TemplateBinding Background}" BorderBrush="#66E5C98A" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Body" Property="Opacity" Value="0.92"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Body" Property="RenderTransform">
+                                    <Setter.Value><ScaleTransform ScaleX="0.985" ScaleY="0.985" CenterX="0" CenterY="0"/></Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Body" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#F3DDA6" Offset="0"/>
+                        <GradientStop Color="#C6A15B" Offset="0.55"/>
+                        <GradientStop Color="#96743D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="GhostButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#9996A0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#E5C98A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="22" Background="#F20B0A0F" BorderBrush="#4DC6A15B" BorderThickness="1" Margin="10">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="30" ShadowDepth="0" Opacity="0.6"/>
+        </Border.Effect>
+        <Grid Margin="40,30,40,30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 상단: 닫기 버튼 (창 드래그 영역) -->
+            <Grid Grid.Row="0" MouseLeftButtonDown="OnDragStart">
+                <Button Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Width="32" Height="32"
+                        Click="OnCancel" Style="{StaticResource GhostButton}" FontSize="14" ToolTip="닫기"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonDown="OnDragStart">
+                <Image x:Name="Emblem" Width="88" Height="88" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="0,0,0,18"/>
+                <TextBlock Text="COMPIVOX" Foreground="#E5C98A" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Segoe UI"/>
+                <TextBlock Text="웹사이트에서 계정을 만들거나 로그인하면&#x0a;COMPIVOX가 자동으로 열립니다."
+                           Foreground="#9996A0" FontSize="13" TextAlignment="Center" Margin="0,14,0,0" LineHeight="20"/>
+                <TextBlock x:Name="StatusText" Text="" Foreground="#FFF8E9" FontSize="13" TextAlignment="Center"
+                           Margin="0,22,0,0" TextWrapping="Wrap" MaxWidth="360" Visibility="Collapsed"/>
+            </StackPanel>
+
+            <Button Grid.Row="2" x:Name="WebLoginButton" Content="웹사이트에서 로그인 / 회원가입"
+                    Style="{StaticResource GoldButton}" Click="OnWebLogin" Margin="0,0,0,12"/>
+
+            <TextBlock Grid.Row="3" Text="© COMPIVOX" Foreground="#5E5B66" FontSize="11" HorizontalAlignment="Center"/>
+        </Grid>
+    </Border>
+</Window>
