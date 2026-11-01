@@ -13,30 +13,6 @@
         <conv:PageMatchConverter x:Key="PageVis"/>
         <conv:SelectedTagConverter x:Key="NavTag"/>
     </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="Window.Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="AuraWarmX" Storyboard.TargetProperty="X" From="-140" To="160" Duration="0:0:40" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
-                    <DoubleAnimation Storyboard.TargetName="AuraWarmY" Storyboard.TargetProperty="Y" From="-70" To="90" Duration="0:0:52" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
-                    <DoubleAnimation Storyboard.TargetName="AuraPlumX" Storyboard.TargetProperty="X" From="120" To="-180" Duration="0:0:56" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
-                    <DoubleAnimation Storyboard.TargetName="AuraPlumY" Storyboard.TargetProperty="Y" From="60" To="-80" Duration="0:0:61" AutoReverse="True" RepeatBehavior="Forever"><DoubleAnimation.EasingFunction><SineEase EasingMode="EaseInOut"/></DoubleAnimation.EasingFunction></DoubleAnimation>
-                    <DoubleAnimation Storyboard.TargetName="Ring1Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:18" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring1X" Storyboard.TargetProperty="X" From="0" To="26" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring2Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:24" BeginTime="0:0:5" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring2X" Storyboard.TargetProperty="X" From="0" To="-30" Duration="0:0:5" AutoReverse="True" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring3Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:15" BeginTime="0:0:9" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring3X" Storyboard.TargetProperty="X" From="0" To="18" Duration="0:0:3.5" AutoReverse="True" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring4Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:27" BeginTime="0:0:2" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring4X" Storyboard.TargetProperty="X" From="0" To="-22" Duration="0:0:4.5" AutoReverse="True" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring5Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:21" BeginTime="0:0:13" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring5X" Storyboard.TargetProperty="X" From="0" To="24" Duration="0:0:5.5" AutoReverse="True" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring6Y" Storyboard.TargetProperty="Y" From="0" To="-1150" Duration="0:0:33" BeginTime="0:0:7" RepeatBehavior="Forever"/>
-                    <DoubleAnimation Storyboard.TargetName="Ring6X" Storyboard.TargetProperty="X" From="0" To="-16" Duration="0:0:4" AutoReverse="True" RepeatBehavior="Forever"/>
-                </Storyboard>
-            </BeginStoryboard>
-        </EventTrigger>
-    </Window.Triggers>
     <Grid>
     <Canvas x:Name="AuraCanvas" IsHitTestVisible="False" ClipToBounds="True" Background="#08090D">
         <Ellipse Width="1100" Height="1100" Canvas.Left="150" Canvas.Top="-200" Opacity="0.9">

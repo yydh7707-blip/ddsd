@@ -54,9 +54,48 @@ public partial class MainWindow : Window
         AuraPlumMY.Y = -_auraY * 110;
     }
 
+    private void StartAuraAnimations()
+    {
+        var sb = new Storyboard();
+        void Add(string target, string prop, double from, double to, double seconds, double beginSeconds, bool reverse)
+        {
+            var anim = new DoubleAnimation(from, to, TimeSpan.FromSeconds(seconds))
+            {
+                BeginTime = TimeSpan.FromSeconds(beginSeconds),
+                AutoReverse = reverse,
+                RepeatBehavior = RepeatBehavior.Forever,
+            };
+            if (reverse)
+                anim.EasingFunction = new SineEase { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTargetName(anim, target);
+            Storyboard.SetTargetProperty(anim, new PropertyPath(prop));
+            sb.Children.Add(anim);
+        }
+
+        Add("AuraWarmX", "X", -140, 160, 40, 0, true);
+        Add("AuraWarmY", "Y", -70, 90, 52, 0, true);
+        Add("AuraPlumX", "X", 120, -180, 56, 0, true);
+        Add("AuraPlumY", "Y", 60, -80, 61, 0, true);
+        Add("Ring1Y", "Y", 0, -1150, 18, 0, false);
+        Add("Ring1X", "X", 0, 26, 4, 0, true);
+        Add("Ring2Y", "Y", 0, -1150, 24, 5, false);
+        Add("Ring2X", "X", 0, -30, 5, 0, true);
+        Add("Ring3Y", "Y", 0, -1150, 15, 9, false);
+        Add("Ring3X", "X", 0, 18, 3.5, 0, true);
+        Add("Ring4Y", "Y", 0, -1150, 27, 2, false);
+        Add("Ring4X", "X", 0, -22, 4.5, 0, true);
+        Add("Ring5Y", "Y", 0, -1150, 21, 13, false);
+        Add("Ring5X", "X", 0, 24, 5.5, 0, true);
+        Add("Ring6Y", "Y", 0, -1150, 33, 7, false);
+        Add("Ring6X", "X", 0, -16, 4, 0, true);
+
+        sb.Begin(this, true);
+    }
+
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         Loaded -= OnLoaded;
+        StartAuraAnimations();
         _introStarted = true;
         _windowBackground = Background;
         Background = Brushes.Black;
