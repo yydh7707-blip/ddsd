@@ -366,24 +366,12 @@
                                 <TextBlock Text="{Binding AccountTitle}" Style="{StaticResource Title}" Margin="0,0,0,8"/>
                                 <TextBlock Text="{Binding AccountIntro}" Style="{StaticResource Muted}"/>
                                 <Border Style="{StaticResource Card}" Margin="0,16,0,0" Visibility="{Binding SignedOut, Converter={StaticResource BoolVis}}">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding EmailLabel}" Style="{StaticResource FactLabel}"/>
-                                        <TextBox Text="{Binding LoginEmail, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <TextBlock Text="{Binding PasswordLabel}" Style="{StaticResource FactLabel}" Margin="0,16,0,4"/>
-                                        <PasswordBox x:Name="LoginPassword" Padding="8,7"/>
-                                        <CheckBox Content="{Binding RememberLabel}" IsChecked="{Binding RememberMe}" Margin="0,14,0,0"/>
-                                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
-                                            <Button Content="{Binding SignInLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LoginPassword}"/>
-                                            <Button Content="{Binding CreateAccountLabel}" Style="{StaticResource GhostButton}" Command="{Binding OpenSiteCommand}" CommandParameter="site"/>
-                                            <Button Content="{Binding ForgotLabel}" Style="{StaticResource GhostButton}" Command="{Binding OpenSiteCommand}" CommandParameter="site"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                    <Button Content="{Binding SignInLabel}" Style="{StaticResource PrimaryButton}" Command="{Binding LoginCommand}"/>
                                 </Border>
                                 <Border Style="{StaticResource Card}" Margin="0,16,0,0" Visibility="{Binding SignedIn, Converter={StaticResource BoolVis}}">
                                     <StackPanel>
-                                        <TextBlock Text="{Binding EmailLabel}" Style="{StaticResource FactLabel}"/>
-                                        <TextBlock Text="{Binding AccountEmail}" FontSize="16" FontWeight="SemiBold"/>
-                                        <TextBlock Text="{Binding AccountVerified}" Style="{StaticResource Muted}" Margin="0,4,0,0"/>
+                                        <TextBlock Text="{Binding UsernameLabel}" Style="{StaticResource FactLabel}"/>
+                                        <TextBlock Text="{Binding AccountUsername}" FontSize="16" FontWeight="SemiBold"/>
                                         <TextBlock Text="{Binding PlanLabel}" Style="{StaticResource FactLabel}" Margin="0,16,0,4"/>
                                         <TextBlock Text="{Binding AccountPlan}" FontSize="16" FontWeight="SemiBold"/>
                                         <TextBlock Text="{Binding DeviceStatus}" Style="{StaticResource Muted}" Margin="0,16,0,0"/>

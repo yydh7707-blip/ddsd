@@ -9,7 +9,7 @@ using System.Text.Json.Nodes;
 
 namespace DEX.App.Account;
 
-public sealed record AccountInfo(string Email, bool EmailVerified, string Plan);
+public sealed record AccountInfo(string Username, string Plan);
 
 public sealed class ApiException(string code, bool network = false) : Exception(code)
 {
@@ -93,13 +93,9 @@ public sealed class AccountClient
         _accessExpires = DateTime.UtcNow.AddSeconds((r["expiresIn"]?.GetValue<int>() ?? 900) - 30);
         _refresh = r["refreshToken"]?.GetValue<string>() ?? _refresh;
         if (remember && _refresh is not null) SaveRefresh(_refresh);
-        return new AccountInfo(r["user"]!["email"]!.GetValue<string>(), r["user"]!["emailVerified"]?.GetValue<bool>() ?? false, r["plan"]?["plan"]?.GetValue<string>() ?? "FREE");
-    }
-
-    public async Task<AccountInfo> LoginAsync(string email, string password, bool remember, CancellationToken ct = default)
-    {
-        var r = await SendAsync(HttpMethod.Post, "api/auth/login", new { email, password, client = "desktop" }, false, ct);
-        return Accept(r, remember);
+        var user = r["user"]!;
+        var username = user["username"]?.GetValue<string>() ?? user["email"]!.GetValue<string>();
+        return new AccountInfo(username, r["plan"]?["plan"]?.GetValue<string>() ?? "FREE");
     }
 
     /// <summary>웹사이트 로그인 후 전달받은 일회용 코드를 세션으로 교환한다.</summary>
