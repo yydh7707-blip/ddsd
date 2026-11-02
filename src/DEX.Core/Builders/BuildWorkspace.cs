@@ -19,6 +19,25 @@ public sealed class BuildWorkspace
         return dest;
     }
 
+    public void DeleteCopy(string workspace)
+    {
+        var root = Path.GetFullPath(SecurityManager.JobsRoot());
+        var path = Path.GetFullPath(workspace);
+        if (!string.Equals(Path.GetDirectoryName(path), root, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("The build workspace is outside the managed jobs directory.");
+        if (!File.Exists(path) && !Directory.Exists(path))
+            return;
+
+        var attributes = File.GetAttributes(path);
+        if ((attributes & FileAttributes.Directory) == 0)
+        {
+            File.Delete(path);
+            return;
+        }
+
+        Directory.Delete(path, (attributes & FileAttributes.ReparsePoint) == 0);
+    }
+
     public static string Rid(ArchitectureKind kind) => kind switch
     {
         ArchitectureKind.X86 => "win-x86",

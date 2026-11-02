@@ -2,7 +2,7 @@
 ; Build: ISCC.exe installer\COMPIVOX.iss   (run after publishing the EXE to publish\win-x64)
 
 #define MyAppName "COMPIVOX"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "COMPIVOX"
 #define MyAppExeName "COMPIVOX.exe"
 
@@ -19,6 +19,7 @@ OutputBaseFilename=COMPIVOX-Setup-{#MyAppVersion}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+SetupIconFile=..\src\DEX.App\Assets\app.ico
 ArchitecturesInstallIn64BitMode=x64compatible
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog

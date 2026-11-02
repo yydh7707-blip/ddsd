@@ -21,6 +21,9 @@ public partial class MainWindow : Window
     private bool _introFinished;
     private bool _introTimedOut;
     private Brush? _windowBackground;
+    private Storyboard? _auraStoryboard;
+    private DispatcherTimer? _introHoldTimer;
+    private DispatcherTimer? _introFailsafeTimer;
 
     public MainWindow()
     {
@@ -31,6 +34,7 @@ public partial class MainWindow : Window
         Loaded += OnLoaded;
         MouseMove += OnAuraMouseMove;
         CompositionTarget.Rendering += OnAuraFrame;
+        Closed += OnClosed;
     }
 
     private double _auraTargetX, _auraTargetY, _auraX, _auraY;
@@ -56,6 +60,9 @@ public partial class MainWindow : Window
 
     private void StartAuraAnimations()
     {
+        if (!SystemParameters.ClientAreaAnimation)
+            return;
+
         var sb = new Storyboard();
         void Add(string target, string prop, double from, double to, double seconds, double beginSeconds, bool reverse)
         {
@@ -81,6 +88,7 @@ public partial class MainWindow : Window
         Add("AuraPlumS", "ScaleX", 1.05, 0.95, 34, 0, true);
         Add("AuraPlumS", "ScaleY", 1.05, 0.95, 34, 0, true);
 
+        _auraStoryboard = sb;
         sb.Begin(this, true);
     }
 
@@ -119,6 +127,7 @@ public partial class MainWindow : Window
         }
 
         var hold = new DispatcherTimer { Interval = SystemParameters.ClientAreaAnimation ? IntroHold : TimeSpan.FromMilliseconds(600) };
+        _introHoldTimer = hold;
         hold.Tick += (_, _) =>
         {
             hold.Stop();
@@ -128,6 +137,7 @@ public partial class MainWindow : Window
         hold.Start();
 
         var failsafe = new DispatcherTimer { Interval = IntroMaxDuration };
+        _introFailsafeTimer = failsafe;
         failsafe.Tick += (_, _) =>
         {
             failsafe.Stop();
@@ -142,6 +152,8 @@ public partial class MainWindow : Window
         if (_introFinished || !_introStarted || !_minHoldElapsed || !(_model.Ready || _introTimedOut))
             return;
         _introFinished = true;
+        _introHoldTimer?.Stop();
+        _introFailsafeTimer?.Stop();
         IntroOverlay.IsHitTestVisible = false;
         if (!SystemParameters.ClientAreaAnimation)
         {
@@ -221,6 +233,15 @@ public partial class MainWindow : Window
     private void MaxClick(object sender, RoutedEventArgs e) =>
         WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     private void CloseClick(object sender, RoutedEventArgs e) => Close();
+
+    private void OnClosed(object? sender, EventArgs e)
+    {
+        CompositionTarget.Rendering -= OnAuraFrame;
+        _model.PropertyChanged -= OnModelChanged;
+        _auraStoryboard?.Stop(this);
+        _introHoldTimer?.Stop();
+        _introFailsafeTimer?.Stop();
+    }
 
     private void OnDragOver(object sender, DragEventArgs e)
     {

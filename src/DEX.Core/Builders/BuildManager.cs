@@ -62,6 +62,23 @@ public sealed class BuildManager
             return BuildVerifier.Fail(ex.Message, ex.Message, DateTimeOffset.UtcNow - started, BuildStage.Preparing);
         }
 
+        try
+        {
+            return await BuildInWorkspaceAsync(request, workspace, progress, started, cancellationToken);
+        }
+        finally
+        {
+            _workspace.DeleteCopy(workspace);
+        }
+    }
+
+    private async Task<BuildResult> BuildInWorkspaceAsync(
+        BuildRequest request,
+        string workspace,
+        IProgress<BuildProgress> progress,
+        DateTimeOffset started,
+        CancellationToken cancellationToken)
+    {
         progress.Report(new BuildProgress { Stage = BuildStage.CheckingRequirements, Message = Text.Stage(BuildStage.CheckingRequirements) });
         var method = request.Options.Method == BuildMethod.None ? request.Analysis.RecommendedMethod : request.Options.Method;
         var options = request.Options;

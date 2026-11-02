@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using DEX.App.Account;
 
@@ -19,6 +20,7 @@ public partial class LoginWindow : Window
 {
     private readonly AccountClient _account;
     private CancellationTokenSource? _cts;
+    private Storyboard? _auraStoryboard;
 
     public LoginWindow(AccountClient account)
     {
@@ -32,7 +34,45 @@ public partial class LoginWindow : Window
         {
             // 아이콘이 없어도 로그인 기능에는 영향이 없다.
         }
-        Closed += (_, _) => _cts?.Cancel();
+        Loaded += OnLoaded;
+        Closed += OnClosed;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (!SystemParameters.ClientAreaAnimation)
+            return;
+
+        var storyboard = new Storyboard();
+        AddDrift("LoginAuraWarmX", "X", -110, 150, 58);
+        AddDrift("LoginAuraWarmY", "Y", -70, 90, 72);
+        AddDrift("LoginAuraSoftX", "X", 120, -160, 76);
+        AddDrift("LoginAuraSoftY", "Y", 60, -85, 84);
+        AddDrift("LoginAuraWarmScale", "ScaleX", 0.94, 1.06, 30);
+        AddDrift("LoginAuraWarmScale", "ScaleY", 0.94, 1.06, 30);
+        AddDrift("LoginAuraSoftScale", "ScaleX", 1.04, 0.96, 38);
+        AddDrift("LoginAuraSoftScale", "ScaleY", 1.04, 0.96, 38);
+        storyboard.Begin(this, true);
+        _auraStoryboard = storyboard;
+
+        void AddDrift(string targetName, string property, double from, double to, double seconds)
+        {
+            var animation = new DoubleAnimation(from, to, TimeSpan.FromSeconds(seconds))
+            {
+                AutoReverse = true,
+                RepeatBehavior = RepeatBehavior.Forever,
+                EasingFunction = new SineEase { EasingMode = EasingMode.EaseInOut }
+            };
+            Storyboard.SetTargetName(animation, targetName);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(property));
+            storyboard.Children.Add(animation);
+        }
+    }
+
+    private void OnClosed(object? sender, EventArgs e)
+    {
+        _auraStoryboard?.Stop(this);
+        _cts?.Cancel();
     }
 
     private void OnDragStart(object sender, MouseButtonEventArgs e)
