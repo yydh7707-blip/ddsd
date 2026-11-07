@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#faf7fc">
+  <meta name="description" content="Compivox — thoughtful diagnostics for your device and connection.">
+  <title>Compivox — Device & Connection Diagnostics</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="page-art" aria-hidden="true"></div>
+  <div class="intro" id="intro" aria-live="polite">
+    <div class="intro-brand"><img src="./assets/icon.svg" alt=""><span>COMPI VOX</span></div>
+    <p data-t="downloading">Downloading...</p>
+    <div class="intro-track"><span id="introProgress"></span></div>
+    <strong id="introDone" data-t="downloaded">Successfully downloaded!</strong>
+  </div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Compivox home">
+      <img src="./assets/icon.svg" alt="">
+      <span>COMPI VOX</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home" data-t="navHome">Home</a>
+      <a href="#network" data-t="navNetwork">Network</a>
+      <a href="#device" data-t="navDevice">Device</a>
+      <a href="#nfc" data-t="navNfc">NFC</a>
+    </nav>
+    <div class="header-tools">
+      <span class="access-badge" id="accessBadge">WEB ACCESS</span>
+      <label class="sr-only" for="language" data-t="language">Language</label>
+      <select id="language" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+        <option value="zh">简体中文</option>
+      </select>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" data-t-aria="menu">☰</button>
+    </div>
+  </header>
+  <nav class="mobile-menu" id="mobileMenu" hidden aria-label="Mobile navigation">
+    <a href="#home" data-t="navHome">Home</a>
+    <a href="#network" data-t="navNetwork">Network</a>
+    <a href="#device" data-t="navDevice">Device</a>
+    <a href="#nfc" data-t="navNfc">NFC</a>
+  </nav>
+  <main class="shell" id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span><span data-t="eyebrow">YOUR DIGITAL ENVIRONMENT, CLEARER</span></p>
+        <h1>COMPI VOX</h1>
+        <p class="hero-line" data-t="heroLine">Check your device.<br>Understand your connection.</p>
+        <p class="hero-note" data-t="heroNote">A considered collection of device and network checks, built around real measurements.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#network"><span data-t="exploreNetwork">Explore diagnostics</span><span aria-hidden="true">↗</span></a>
+          <span class="privacy-note"><span class="privacy-dot"></span><span data-t="privacyNote">No account. No invented results.</span></span>
+        </div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="orbit-core"><img src="./assets/icon.svg" alt=""></div>
+        <span class="orbit-chip chip-one">DEVICE</span><span class="orbit-chip chip-two">NETWORK</span>
+      </div>
+      <div class="hero-foot"><span data-t="platformNote">Browser-based diagnostics</span><span>COMPIVOX / 01</span></div>
+    </section>
+
+    <section class="access-notice" id="accessNotice" hidden>
+      <span class="access-symbol" aria-hidden="true">⌁</span>
+      <div><strong data-t="nfcDetected">NFC-specific URL opened</strong><p id="accessDescription"></p></div>
+      <span class="tag-id" id="tagIdentifier"></span>
+    </section>
+
+    <section class="section-block" id="network">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-t="networkKicker">01 / CONNECTIVITY</p><h2 data-t="networkTitle">Network diagnostics</h2></div>
+        <p data-t="networkIntro">Understand reachability, performance, and the quality of your connection.</p>
+      </div>
+      <div class="feature-grid" id="networkGrid"></div>
+    </section>
+
+    <section class="section-block" id="device">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-t="deviceKicker">02 / HARDWARE & BROWSER</p><h2 data-t="deviceTitle">Device diagnostics</h2></div>
+        <p data-t="deviceIntro">Explore display behavior, input, and browser capabilities.</p>
+      </div>
+      <div class="feature-grid" id="deviceGrid"></div>
+    </section>
+
+    <section class="section-block nfc-section" id="nfc">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-t="nfcKicker">03 / TAP TO CONNECT</p><h2 data-t="nfcTitle">NFC access</h2></div>
+        <p data-t="nfcSectionIntro">Open a tag-specific link or read an NDEF tag on supported Android browsers.</p>
+      </div>
+      <div class="feature-grid nfc-grid" id="nfcGrid"></div>
+      <p class="server-note" data-t="serverNote">Tag registration, management, and access counts need a trusted server; this browser-only site will not simulate them.</p>
+    </section>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="#home"><img src="./assets/icon.svg" alt=""><span>COMPI VOX</span></a>
+      <p data-t="footerNote">Quietly useful diagnostics. Measurements stay in your browser.</p>
+      <a href="#home" class="back-top" data-t="backTop">Back to top ↑</a>
+    </footer>
+  </main>
+
+  <dialog class="test-dialog" id="testDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-head">
+      <div><p class="section-kicker" id="dialogCategory"></p><h2 id="dialogTitle"></h2></div>
+      <button class="icon-button" id="closeDialog" aria-label="Close">×</button>
+    </div>
+    <p class="dialog-description" id="dialogDescription"></p>
+    <p class="test-status" id="testStatus" aria-live="polite"></p>
+    <div class="progress-track" id="progressTrack" hidden><span id="progressBar"></span></div>
+    <div class="tool-fields" id="toolFields"></div>
+    <div class="result-grid" id="resultGrid" aria-live="polite"></div>
+    <div class="dialog-actions">
+      <button class="button button-primary" id="runTest"><span data-t="startTest">Start test</span><span aria-hidden="true">→</span></button>
+      <button class="button button-secondary" id="shareResult" disabled data-t="shareResults">Share result</button>
+      <button class="button button-text" id="backHome" data-t="close">Close</button>
+    </div>
+    <p class="fine-print" id="finePrint"></p>
+  </dialog>
+</body>
+</html>
