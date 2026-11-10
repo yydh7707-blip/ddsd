@@ -1,8 +1,8 @@
 const D = {
   en: {
-    navHome:"Home",navNetwork:"Network",navDevice:"Device",navNfc:"NFC",language:"Language",menu:"Open menu",
+    navHome:"Home",navNetwork:"Network",navDevice:"Device",navNfc:"NFC",navResults:"Results",navSettings:"Settings",language:"Language",menu:"Open menu",
     downloading:"Downloading...",downloaded:"Successfully downloaded!",eyebrow:"YOUR DIGITAL ENVIRONMENT, CLEARER",heroLine:"Check your device.\nUnderstand your connection.",heroNote:"A considered collection of device and network checks, built around real measurements.",exploreNetwork:"Explore diagnostics",privacyNote:"No account. No invented results.",platformNote:"Browser-based diagnostics",nfcBadge:"NFC ACCESS",webBadge:"WEB ACCESS",nfcDetected:"NFC-specific URL opened",redirectObserved:"Redirect to HTTPS observed",redirectNotObserved:"No HTTPS redirect observed",redirectUnknown:"Could not confirm the redirect.",
-    networkKicker:"01 / CONNECTIVITY",networkTitle:"Network diagnostics",networkIntro:"Understand reachability, performance, and the quality of your connection.",deviceKicker:"02 / HARDWARE & BROWSER",deviceTitle:"Device diagnostics",deviceIntro:"Explore display behavior, input, and browser capabilities.",nfcKicker:"03 / TAP TO CONNECT",nfcTitle:"NFC access",nfcIntro:"Open a tag-specific link or read an NDEF tag on supported Android browsers.",serverNote:"Tag registration, management, and access counts need a trusted server; this browser-only site will not simulate them.",
+    networkKicker:"01 / CONNECTIVITY",networkTitle:"Network diagnostics",networkIntro:"Understand reachability, performance, and the quality of your connection.",deviceKicker:"02 / HARDWARE & BROWSER",deviceTitle:"Device diagnostics",deviceIntro:"Explore display behavior, input, and browser capabilities.",nfcKicker:"03 / TAP TO CONNECT",nfcTitle:"NFC access",nfcIntro:"Open a tag-specific link or read an NDEF tag on supported Android browsers.",resultsKicker:"04 / HISTORY",resultsTitle:"Results",resultsIntro:"Review and manage the tests you have run in this browser.",settingsKicker:"05 / PREFERENCES",settingsTitle:"Settings",settingsIntro:"Adjust your diagnostic preferences and keep your browser data local.",clearResults:"Clear saved results",deleteResult:"Delete",noSavedResults:"No saved results yet.",localStorageMode:"Local device storage",storageMode:"Storage",resetDefaults:"Reset default settings",serverNote:"Tag registration, management, and access counts need a trusted server; this browser-only site will not simulate them.",
     footerNote:"Quietly useful diagnostics. Measurements stay in your browser.",backTop:"Back to top ↑",startTest:"Start test",shareResults:"Share result",close:"Close",ready:"Ready when you are.",running:"Running test…",complete:"Test complete",failed:"The test could not be completed. Check the connection and try again.",invalidDomain:"Enter a valid public domain name.",invalidUrl:"Enter a valid public HTTP or HTTPS website URL.",browserLimited:"The browser could not expose this response. CORS, network, or server policy may be responsible.",notMeasured:"Not measured",notAvailable:"Not available",supported:"Supported",notSupported:"Not supported",reachable:"Reachable",unavailable:"Could not confirm",noRecords:"No records returned.",resolverUnavailable:"Resolver unavailable",selectType:"Record type",domain:"Domain",url:"Website URL",answer:"DNS answer",resolver:"Resolver",responseTime:"Response time",httpStatus:"HTTP status",redirect:"Redirect information",publicAddress:"Public address",connection:"Connectivity",loading:"Checking…",shareFailed:"Could not share the result.",copied:"Result copied.",cancelled:"Test cancelled.",approximate:"Estimate based on the measurements shown.",browserTls:"The browser accepted the HTTPS connection.",certificatePrivate:"Certificate issuer and expiry are not exposed to this page.",noServer:"This function requires a server, so no result is reported.",nfcPhysicalLimit:"A URL identifier does not prove that a tag was physically tapped.",offlineSignal:"Browser online status is a hint, not proof of internet access.",noSpeed:"Run a speed test first.",nfcUnavailable:"Web NFC is unavailable. Use a tag URL; direct reading requires supported Android Chrome over HTTPS.",nfcReady:"Ready to scan. Press start and hold an NFC tag near the device.",nfcScanning:"Scanning for a tag…",nfcReadFailed:"Could not read the NFC tag.",nfcPermission:"NFC scan was not permitted.",noNfcTag:"No NFC-specific URL identifier was found.",tagOpened:"NFC-specific URL opened",webOpened:"Opened as a regular web visit",nfcIntro:"Successfully opened through an NFC-specific URL. Physical tag contact cannot be verified.",webIntro:"No NFC-specific URL identifier is present.",tagId:"Tag identifier",serverRegistry:"Registration status is server-managed and unavailable here.",serverCount:"Access count is server-managed and unavailable here.",online:"Online (browser signal)",offline:"Offline (browser signal)",events:"Connection changes",reconnects:"Reconnect events",qualityScore:"Connection quality score",latency:"Latency",jitter:"Jitter",download:"Download",upload:"Upload",packetLoss:"Failed samples",stability:"Stability",gameScope:"Scope",notGameServer:"General test endpoint — not a game server.",streamTier:"Estimated streaming tier",streamEstimate:"Estimate only; not a playback guarantee.",fps:"Average FPS",frameTime:"Frame time",frameVariance:"Frame-time variation",frameStability:"Frame stability",orientation:"Orientation",angle:"Orientation angle",changes:"Orientation changes",touchCount:"Active touch points",touchMax:"Maximum detected points",touchPositions:"Touch positions",touchPrompt:"Touch this area with multiple fingers",displayManual:"Inspect the screen yourself; this page cannot diagnose pixels.",colorGuide:"Change colors to inspect the panel for unevenness or stuck pixels.",fullscreen:"Full screen",exitFullscreen:"Exit full screen",previous:"Previous",next:"Next",noTouch:"No active touch",accessMethod:"Access method",registry:"Registration status",created:"Created date",lastAccessed:"Last accessed",accessCount:"Access count",ndefData:"NDEF data",measurementScope:"Measurement scope",qualityMethod:"Score uses available measured values only.",note:"Note",method:"Method",tlsValidation:"TLS validation",certificateDetails:"Certificate details",httpRedirect:"HTTP to HTTPS redirect",noRedirectObserved:"No redirect observed",redirectTarget:"Redirect target",ipv4Endpoint:"Public IPv4 lookup endpoint",speedEndpoint:"Cloudflare speed-test endpoint",sampleEndpoint:"Six requests to the public measurement endpoint",refreshScope:"Estimated browser animation cadence; not a hardware panel specification.",
     ipTitle:"IP verification",ipDesc:"Check your public address and browser-visible connection.",speedTitle:"Internet speed test",speedDesc:"Measure real transfer time for a download and upload sample.",stabilityTitle:"Network stability",stabilityDesc:"Sample round-trip response time and failed requests.",ipvTitle:"IPv4 / IPv6 connectivity",ipvDesc:"Check public reachability over each IP version.",dnsTitle:"DNS lookup",dnsDesc:"Query A, AAAA, CNAME, MX, TXT, and NS records.",propTitle:"DNS propagation",propDesc:"Compare live DNS answers from Google, Cloudflare, and Quad9.",responseTitle:"Website response time",responseDesc:"Measure a CORS-readable HEAD response from a public website.",httpsTitle:"HTTPS security check",httpsDesc:"Check HTTPS reachability and HTTP-to-HTTPS redirects where visible.",qualityTitle:"Connection quality",qualityDesc:"Score only real network measurements already collected.",gamingTitle:"Gaming connection",gamingDesc:"Review measured latency and jitter; this does not ping game servers.",streamTitle:"Streaming readiness",streamDesc:"Estimate video tiers from the measured download speed.",disconnectTitle:"Disconnect monitor",disconnectDesc:"Track browser online/offline events while this page is open.",
     refreshTitle:"Refresh rate test",refreshDesc:"Estimate frame cadence with requestAnimationFrame.",deviceInfoTitle:"Device information",deviceInfoDesc:"Review browser-reported screen and platform details.",frameTitle:"Frame stability",frameDesc:"Measure frame times, average FPS, and variation.",colorTitle:"Display color test",colorDesc:"Cycle through colors and a gradient to inspect the panel.",pixelTitle:"Dead pixel inspection",pixelDesc:"Use full-screen colors to inspect pixels yourself.",orientationTitle:"Screen orientation",orientationDesc:"Show the current orientation and watch for changes.",multiTitle:"Multi-touch test",multiDesc:"Detect multiple simultaneous touch points.",compatTitle:"Browser compatibility",compatDesc:"Check support for selected browser APIs.",touchTitle:"Touch test",touchDesc:"Check touch and pointer input on this device.",
@@ -97,6 +97,68 @@ let lang = localStorage.getItem("compivox-language") || "en";
 if (!D[lang]) lang = "en";
 const t = key => D[lang][key] ?? D.en[key] ?? key;
 const measured = {speed:null,stability:null,orientationChanges:0,offlineEvents:0,reconnects:0};
+const resultsKey = "compivox-results";
+
+function getSavedResults(){
+  try { return JSON.parse(localStorage.getItem(resultsKey) || "[]"); }
+  catch { return []; }
+}
+function saveSavedResults(results){
+  localStorage.setItem(resultsKey, JSON.stringify(results));
+}
+function recordResult(group, title, rows){
+  const saved = getSavedResults();
+  const entry = {
+    id: `${Date.now()}-${Math.random().toString(16).slice(2,8)}`,
+    group,
+    title,
+    createdAt: new Date().toISOString(),
+    rows: Array.isArray(rows) ? rows.slice(0, 10) : []
+  };
+  saved.unshift(entry);
+  const trimmed = saved.slice(0, 12);
+  saveSavedResults(trimmed);
+  renderResultsPage();
+}
+
+function renderResultsPage(){
+  const list = document.getElementById("resultsList");
+  if (!list) return;
+  const results = getSavedResults();
+  if (!results.length) {
+    list.innerHTML = `<div class="empty-state">${t("noSavedResults")}</div>`;
+    return;
+  }
+  list.innerHTML = results.map(result => {
+    const rows = (result.rows || []).slice(0, 4).map(([label, value]) => `<div class="result-pill"><span>${label}</span><strong>${value}</strong></div>`).join("");
+    return `
+      <article class="result-card">
+        <div class="result-card-head">
+          <div>
+            <span class="result-badge">${result.group || "Test"}</span>
+            <h3>${result.title}</h3>
+          </div>
+          <time>${new Date(result.createdAt).toLocaleString()}</time>
+        </div>
+        <div class="result-summary">${rows || `<div class="result-pill"><span>${t("note")}</span><strong>${t("notMeasured")}</strong></div>`}</div>
+        <button class="button button-text result-delete" data-result-id="${result.id}" type="button">${t("deleteResult")}</button>
+      </article>
+    `;
+  }).join("");
+
+  list.querySelectorAll(".result-delete").forEach(button => {
+    button.addEventListener("click", () => {
+      const filtered = getSavedResults().filter(item => item.id !== button.dataset.resultId);
+      saveSavedResults(filtered);
+      renderResultsPage();
+    });
+  });
+}
+
+function renderSettingsPage(){
+  const settingsSelect = document.getElementById("settingsLanguage");
+  if (settingsSelect) settingsSelect.value = lang;
+}
 let current = null, activeController = null, stopLive = null, introTimer = null;
 const dialog = $("#testDialog");
 
@@ -107,6 +169,8 @@ function trMarkup() {
   $("#language").value = lang;
   renderCards();
   renderAccess();
+  renderResultsPage();
+  renderSettingsPage();
   if(current) {
     $("#dialogCategory").textContent=t(current.group==="network"?"networkKicker":current.group==="device"?"deviceKicker":"nfcKicker");
     $("#dialogTitle").textContent=t(current.title);
@@ -480,7 +544,7 @@ function readNfc(signal){
 async function executeTest(){
   if(!current)return;const test=current;activeController?.abort();activeController=new AbortController();const signal=activeController.signal;
   $("#runTest").disabled=true;$("#shareResult").disabled=true;$("#resultGrid").replaceChildren();progress(5);setStatus(t("running"));
-  try{const rows=await run(test.id);if(!dialog.open||current!==test||signal.aborted)return;if(rows)addRows(rows);finishStatus(test.id==="nfc-scan"?t("keyDetected"):t("complete"));}
+  try{const rows=await run(test.id);if(!dialog.open||current!==test||signal.aborted)return;if(rows)addRows(rows);const label = test.title ? t(test.title) : $("#dialogTitle").textContent;recordResult(test.group, label, rows);finishStatus(test.id==="nfc-scan"?t("keyDetected"):t("complete"));}
   catch(error){if(error.name==="AbortError"){setStatus(t("cancelled"));return;}const known=["invalidDomain","invalidUrl","browserLimited","noSpeed","nfcUnavailable","nfcReadFailed","nfcPermission"];setStatus(known.includes(error.message)?t(error.message):t("failed"));$("#runTest").disabled=false;progress(0);}
 }
 async function share() {
@@ -516,9 +580,12 @@ function executeLiveDisconnect(){
   $("#resultGrid").replaceChildren();addRows([[t("connection"),navigator.onLine?t("online"):t("offline")],[t("offlineSignal"),t("offlineSignal")],[t("events"),String(measured.offlineEvents+measured.reconnects)],[t("reconnects"),String(measured.reconnects)]]);
 }
 
-$("#language").addEventListener("change",e=>{lang=e.target.value;localStorage.setItem("compivox-language",lang);trMarkup();});
+$("#language").addEventListener("change",e=>{lang=e.target.value;localStorage.setItem("compivox-language",lang);$("#settingsLanguage").value = lang; trMarkup();});
+$("#settingsLanguage").addEventListener("change",e=>{lang=e.target.value;localStorage.setItem("compivox-language",lang);$("#language").value = lang; trMarkup();});
 $("#menuToggle").addEventListener("click",()=>{const menu=$("#mobileMenu"),open=menu.hidden;menu.hidden=!open;$("#menuToggle").setAttribute("aria-expanded",String(open));});
 $("#mobileMenu").addEventListener("click",e=>{if(e.target.closest("a")){$("#mobileMenu").hidden=true;$("#menuToggle").setAttribute("aria-expanded","false");}});
+$("#clearResultsBtn").addEventListener("click",()=>{saveSavedResults([]);renderResultsPage();});
+$("#resetSettingsBtn").addEventListener("click",()=>{lang="en";localStorage.setItem("compivox-language",lang);$("#language").value = lang;$("#settingsLanguage").value = lang;trMarkup();});
 $("#runTest").addEventListener("click",executeTest);$("#shareResult").addEventListener("click",share);
 $("#closeDialog").addEventListener("click",closeDialog);$("#backHome").addEventListener("click",closeDialog);
 dialog.addEventListener("click",e=>{if(e.target===dialog)closeDialog();});
@@ -537,3 +604,15 @@ openTest=function(def){
   }
   if(def.id==="disconnect"){executeLiveDisconnect();stopLive=()=>{};}
 };
+D.ko = Object.assign(D.ko || {}, {
+  navHome:"홈",navNetwork:"네트워크",navDevice:"기기",navNfc:"NFC",navResults:"결과",navSettings:"설정",
+  resultsKicker:"04 / 기록",resultsTitle:"결과",resultsIntro:"브라우저에 저장된 검사 기록을 확인하고 관리하세요.",settingsKicker:"05 / 환경설정",settingsTitle:"설정",settingsIntro:"진단 환경을 조정하고 브라우저에 저장된 데이터를 관리하세요.",clearResults:"저장된 결과 삭제",deleteResult:"삭제",noSavedResults:"저장된 결과가 아직 없습니다.",localStorageMode:"기기 로컬 저장",storageMode:"저장 방식",resetDefaults:"기본값으로 재설정"
+});
+D.ja = Object.assign(D.ja || {}, {
+  navHome:"ホーム",navNetwork:"ネットワーク",navDevice:"デバイス",navNfc:"NFC",navResults:"結果",navSettings:"設定",
+  resultsKicker:"04 / 履歴",resultsTitle:"結果",resultsIntro:"このブラウザーで実行した検査結果を確認・管理します。",settingsKicker:"05 / 設定",settingsTitle:"設定",settingsIntro:"診断の設定を調整し、ブラウザー内のデータを管理します。",clearResults:"保存済み結果を削除",deleteResult:"削除",noSavedResults:"保存された結果はまだありません。",localStorageMode:"端末のローカル保存",storageMode:"保存先",resetDefaults:"初期設定に戻す"
+});
+D.zh = Object.assign(D.zh || {}, {
+  navHome:"首页",navNetwork:"网络",navDevice:"设备",navNfc:"NFC",navResults:"结果",navSettings:"设置",
+  resultsKicker:"04 / 历史",resultsTitle:"结果",resultsIntro:"查看并管理你在此浏览器中运行过的检测结果。",settingsKicker:"05 / 偏好",settingsTitle:"设置",settingsIntro:"调整诊断偏好并保留本地浏览器数据。",clearResults:"清除已保存结果",deleteResult:"删除",noSavedResults:"暂无已保存结果。",localStorageMode:"本地设备存储",storageMode:"存储方式",resetDefaults:"重置为默认设置"
+});

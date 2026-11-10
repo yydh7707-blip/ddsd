@@ -82,6 +82,25 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .tag-id { margin-left: auto; color: var(--muted); font-size: .75rem; overflow-wrap: anywhere; }
 
 .section-block { padding: 58px 0 12px; scroll-margin-top: 88px; }
+.page-panel { padding-top: 56px; }
+.results-shell, .settings-shell { display: grid; gap: 18px; }
+.results-toolbar { display: flex; justify-content: flex-end; }
+.results-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.result-card, .settings-card { padding: 20px; border: 1px solid rgba(130,115,165,.15); border-radius: 22px; background: linear-gradient(145deg, rgba(255,255,255,.93), rgba(255,255,255,.8)); box-shadow: 0 12px 24px rgba(109, 97, 138, .06); }
+.result-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.result-badge { display: inline-flex; align-items: center; padding: 5px 8px; border-radius: 999px; background: rgba(220,200,245,.25); color: #6f6682; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.result-card h3 { margin: 10px 0 0; font-size: 1.04rem; }
+.result-card time { color: var(--muted); font-size: .7rem; }
+.result-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.result-pill { display: grid; gap: 4px; padding: 11px 12px; border: 1px solid rgba(130,115,165,.12); border-radius: 14px; background: rgba(255,255,255,.5); }
+.result-pill span { color: var(--muted); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; }
+.result-pill strong { font-size: .82rem; word-break: break-word; }
+.result-delete { padding-inline: 0; justify-content: flex-start; color: #8a6d88; }
+.empty-state { padding: 22px; border: 1px dashed rgba(130,115,165,.2); border-radius: 18px; background: rgba(255,255,255,.46); color: var(--muted); }
+.settings-card { display: grid; gap: 18px; max-width: 560px; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--ink); font-weight: 600; }
+.setting-row select { width: min(220px, 54vw); min-height: 42px; padding: 0 12px; border: 1px solid rgba(130,115,165,.17); border-radius: 12px; background: rgba(255,255,255,.7); color: var(--ink); }
+.status-row strong { color: #6d6281; font-size: .8rem; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin: 0 0 23px; }
 .section-heading .section-kicker { margin: 0 0 8px; }
 .section-heading h2 { margin: 0; font: 600 clamp(1.4rem, 2.4vw, 1.9rem)/1.2 "Manrope", sans-serif; letter-spacing: -.045em; }

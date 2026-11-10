@@ -28,6 +28,8 @@
       <a href="#network" data-t="navNetwork">Network</a>
       <a href="#device" data-t="navDevice">Device</a>
       <a href="#nfc" data-t="navNfc">NFC</a>
+      <a href="#results" data-t="navResults">Results</a>
+      <a href="#settings" data-t="navSettings">Settings</a>
     </nav>
     <div class="header-tools">
       <span class="access-badge" id="accessBadge">WEB ACCESS</span>
@@ -46,6 +48,8 @@
     <a href="#network" data-t="navNetwork">Network</a>
     <a href="#device" data-t="navDevice">Device</a>
     <a href="#nfc" data-t="navNfc">NFC</a>
+    <a href="#results" data-t="navResults">Results</a>
+    <a href="#settings" data-t="navSettings">Settings</a>
   </nav>
   <main class="shell" id="home">
     <section class="hero">
@@ -96,6 +100,44 @@
       </div>
       <div class="feature-grid nfc-grid" id="nfcGrid"></div>
       <p class="server-note" data-t="serverNote">Tag registration, management, and access counts need a trusted server; this browser-only site will not simulate them.</p>
+    </section>
+
+    <section class="section-block page-panel" id="results">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-t="resultsKicker">04 / HISTORY</p><h2 data-t="resultsTitle">Results</h2></div>
+        <p data-t="resultsIntro">Review and manage the tests you have run in this browser.</p>
+      </div>
+      <div class="results-shell">
+        <div class="results-toolbar">
+          <button class="button button-secondary" id="clearResultsBtn" type="button" data-t="clearResults">Clear saved results</button>
+        </div>
+        <div class="results-list" id="resultsList"></div>
+      </div>
+    </section>
+
+    <section class="section-block page-panel" id="settings">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-t="settingsKicker">05 / PREFERENCES</p><h2 data-t="settingsTitle">Settings</h2></div>
+        <p data-t="settingsIntro">Adjust your diagnostic preferences and keep your browser data local.</p>
+      </div>
+      <div class="settings-shell">
+        <div class="settings-card">
+          <label class="setting-row" for="settingsLanguage">
+            <span data-t="language">Language</span>
+            <select id="settingsLanguage" aria-label="Language">
+              <option value="en">English</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="zh">简体中文</option>
+            </select>
+          </label>
+          <div class="setting-row status-row">
+            <span data-t="storageMode">Storage</span>
+            <strong data-t="localStorageMode">Local device storage</strong>
+          </div>
+          <button class="button button-primary" id="resetSettingsBtn" type="button" data-t="resetDefaults">Reset default settings</button>
+        </div>
+      </div>
     </section>
 
     <footer class="footer">
